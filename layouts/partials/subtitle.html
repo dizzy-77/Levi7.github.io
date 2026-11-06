@@ -1,0 +1,124 @@
+{{- /*
+  Home page subtitle with a character-by-character typewriter effect.
+
+  This is a site-level override of the theme partial
+  (themes/hello-friend-ng/layouts/partials/subtitle.html) and is only rendered
+  by the home page. The text itself still comes from `homeSubtitle` in hugo.toml.
+
+  Tunables (data-* attributes on the span below):
+    data-typing-delay   ms to wait before typing starts     (default 350)
+    data-typing-speed   ms per character                    (default 65)
+    data-typing-loop    "true" = erase and retype forever   (default "false")
+    data-typing-cursor  "false" = no blinking caret         (default "true")
+
+  Notes:
+    - Without JavaScript the plain text is rendered as before.
+    - `prefers-reduced-motion: reduce` skips the animation entirely.
+    - Delete this file to go back to the theme's static subtitle.
+*/ -}}
+{{- with .Site.Params.homeSubtitle -}}
+<style>
+  /* Only hide the text while the typewriter is actually going to run. */
+  html.has-typing .home-subtitle__text {
+    visibility: hidden;
+  }
+  .home-subtitle__cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1rem;
+    margin-left: 5px;
+    border-radius: 1px;
+    background: #fe5186;
+    vertical-align: text-bottom;
+    animation: home-subtitle-cursor 1s infinite;
+  }
+  .home-subtitle__cursor--off {
+    display: none;
+  }
+  .home-subtitle__cursor--done {
+    animation: none;
+    opacity: 1;
+  }
+  @keyframes home-subtitle-cursor {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .home-subtitle__cursor {
+      animation: none;
+    }
+  }
+</style>
+
+<script>document.documentElement.classList.add("has-typing");</script>
+
+<p class="home-subtitle">
+  <span class="home-subtitle__text"
+        data-typing-delay="350"
+        data-typing-speed="65"
+        data-typing-loop="true"
+        data-typing-cursor="true">{{ . }}</span><span class="home-subtitle__cursor" aria-hidden="true"></span>
+</p>
+
+<script>
+  (function () {
+    var text = document.querySelector(".home-subtitle__text");
+    if (!text) return;
+
+    var full = text.textContent;
+    var chars = Array.from(full); // keeps surrogate pairs (emoji) intact
+    var cursor = document.querySelector(".home-subtitle__cursor");
+    var speed = parseInt(text.dataset.typingSpeed || "65", 10);
+    var delay = parseInt(text.dataset.typingDelay || "350", 10);
+    var loop = text.dataset.typingLoop === "true";
+    var showCursor = text.dataset.typingCursor !== "false";
+    var reduced = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function revealAll() {
+      text.textContent = full;
+      text.style.visibility = "visible";
+    }
+
+    if (cursor && !showCursor) {
+      cursor.classList.add("home-subtitle__cursor--off");
+    }
+
+    if (reduced || chars.length === 0) {
+      revealAll();
+      if (cursor) cursor.classList.add("home-subtitle__cursor--done");
+      return;
+    }
+
+    text.textContent = "";
+    text.style.visibility = "visible";
+
+    var typed = 0;
+
+    function type() {
+      typed += 1;
+      text.textContent = chars.slice(0, typed).join("");
+      if (typed < chars.length) {
+        setTimeout(type, speed);
+      } else if (loop) {
+        setTimeout(erase, 2000);
+      } else if (cursor) {
+        cursor.classList.add("home-subtitle__cursor--done");
+      }
+    }
+
+    function erase() {
+      typed -= 1;
+      text.textContent = chars.slice(0, typed).join("");
+      if (typed > 0) {
+        setTimeout(erase, Math.max(20, speed / 2));
+      } else {
+        setTimeout(type, delay);
+      }
+    }
+
+    setTimeout(type, delay);
+  })();
+</script>
+{{- end -}}

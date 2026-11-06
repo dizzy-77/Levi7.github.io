@@ -1,0 +1,25 @@
+{{- /*
+  Force the theme's dark (grey) palette regardless of the visitor's OS setting.
+
+  hello-friend-ng resolves its colors through `prefers-color-scheme` unless the
+  <html> element carries a `data-theme="dark|light"` attribute (the [data-theme]
+  rules are more specific, so they win). Setting the attribute here, in <head>,
+  also avoids a white flash on load.
+
+  - To make the site light by default instead: change "dark" to "light" below.
+  - To go back to following the visitor's OS: delete this file.
+  - With `enableThemeToggle = true` in hugo.toml, visitors can still switch
+    manually; the choice is remembered in localStorage.
+*/ -}}
+<script>
+  (function () {
+    var root = document.documentElement;
+    var stored = null;
+    try { stored = window.localStorage.getItem("theme"); } catch (e) {}
+    var theme = stored || "dark";
+    root.setAttribute("data-theme", theme);
+    if (!stored) {
+      try { window.localStorage.setItem("theme", theme); } catch (e) {}
+    }
+  })();
+</script>

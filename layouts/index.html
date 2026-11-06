@@ -1,0 +1,32 @@
+{{- /*
+  Site-level override of the theme's home page template.
+
+  Only difference to themes/hello-friend-ng/layouts/index.html: the big <h1>
+  uses the `homeTitle` param from hugo.toml, falling back to the site title.
+  Remove this file to go back to showing the site title again.
+*/ -}}
+{{ define "body" }}
+    <body class="{{ if .Site.Params.backgroundImage }} background-image" style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
+{{ end }}
+
+{{ define "main" }}
+    <div class="content-center">
+        <main>
+            <div>
+                {{ if .Site.Params.Portrait.Path }}
+                <img src="{{ .Site.Params.Portrait.Path }}" class="circle" alt="{{ .Site.Params.Portrait.Alt }}" style="max-width:{{ .Site.Params.Portrait.MaxWidth }}" />
+                {{ end }}
+
+                <h1>{{ .Site.Params.homeTitle | default .Site.Title }}</h1>
+
+                {{ partial "subtitle.html" . }}
+
+                {{- with .Site.Params.social }}
+                    <div>
+                        {{ partial "social-icons.html" . }}
+                    </div>
+                {{- end }}
+            </div>
+        </main>
+    </div>
+{{ end }}
