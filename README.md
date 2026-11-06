@@ -1,6 +1,6 @@
 # Levi7's Blog
 
-基于 [Hugo](https://gohugo.io) 与 [hello-friend-ng](https://github.com/rhazdon/hugo-theme-hello-friend-ng) 主题的个人博客，最终发布到 GitHub Pages（仓库 `dizzy-77/Levi7.github.io`）。
+基于 [Hugo](https://gohugo.io) 与 [hello-friend-ng](https://github.com/rhazdon/hugo-theme-hello-friend-ng) 主题的个人博客，最终发布到 GitHub Pages（仓库 `dizzy-77/dizzy-77.github.io`）。
 
 ## 目录结构
 
@@ -95,7 +95,7 @@ hugo server -D
 `hugo.toml` 里 `canonifyURLs` 必须保持 `false`。主题的 exampleSite 默认是 `true`，
 它会把 CSS/JS 等资源链接改写成 `https://你的域名/...` 的绝对地址，结果是
 **本地 `hugo server` 预览时样式完全不生效**（页面白底、无排版）。设为 `false` 后
-资源用站点根相对路径（如 `/Levi7.github.io/main.min.xxx.css`），本地和线上都正常。
+资源用站点根相对路径（如 `/main.min.xxx.css`），本地和线上都正常。
 
 ## 后续可自行修改的地方
 

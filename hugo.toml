@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 
 # Change this if the site is published somewhere else (custom domain, user page, ...).
-baseURL = "https://dizzy-77.github.io/Levi7.github.io/"
+baseURL = "https://dizzy-77.github.io/"
 
 title        = "Levi7"
 locale       = "en-us"
@@ -144,7 +144,7 @@ disableHugoGeneratorInject = false
 
   # Addon: Utteranc.es comments (GitHub issues backed)
   # [params.utterances]
-  #   repository = "dizzy-77/Levi7.github.io"
+  #   repository = "dizzy-77/dizzy-77.github.io"
   #   label      = "comments"
   #   issueTerm  = "pathname"
   #   theme      = "preferred-color-scheme"
