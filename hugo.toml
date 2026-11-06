@@ -82,6 +82,9 @@ disableHugoGeneratorInject = false
   # layouts/partials/subtitle.html).
   homeSubtitle = "Welcome to my blog."
 
+  # How many recent posts to list under the hero on the home page.
+  homePostsCount = 5
+
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
 

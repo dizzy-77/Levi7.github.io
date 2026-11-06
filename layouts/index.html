@@ -1,9 +1,12 @@
 {{- /*
   Site-level override of the theme's home page template.
 
-  Only difference to themes/hello-friend-ng/layouts/index.html: the big <h1>
-  uses the `homeTitle` param from hugo.toml, falling back to the site title.
-  Remove this file to go back to showing the site title again.
+  Differences to themes/hello-friend-ng/layouts/index.html:
+    1. the big <h1> uses the `homeTitle` param from hugo.toml;
+    2. the latest posts are listed below the hero, so articles are reachable
+       straight from the landing page (count: `homePostsCount`).
+
+  Remove this file to go back to the theme's welcome-only home page.
 */ -}}
 {{ define "body" }}
     <body class="{{ if .Site.Params.backgroundImage }} background-image" style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
@@ -29,4 +32,34 @@
             </div>
         </main>
     </div>
+
+    {{- $count := .Site.Params.homePostsCount | default 5 -}}
+    {{- with first $count (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+        <div class="content">
+            <main class="posts">
+                {{ range .GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">
+                                            {{ if .Site.Params.dateformShort }}
+                                                {{ time.Format .Site.Params.dateformShort .Date }}
+                                            {{ else }}
+                                                {{ time.Format "Jan 2" .Date }}
+                                            {{ end }}
+                                        </span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+            </main>
+        </div>
+    {{- end }}
 {{ end }}
