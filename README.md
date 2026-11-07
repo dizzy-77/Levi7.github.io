@@ -106,6 +106,23 @@ hugo server -D
 - 绑定自定义域名：把域名写进 `static/CNAME`，并把 `baseURL` 改为该域名。
 - 评论区：`hugo.toml` 里已预留 `[params.utterances]` 配置（基于 GitHub Issues），需要时取消注释并填上 `repository`。
 
+## 站点图标（favicon）
+
+图标放在 `static/` 下，配色取自站点本身：底色 `#1b1c1d`（页头暗色）+ 主色 `#fe5186`（主题强调色，
+和页头光标、`>` 提示符一致），图形是 Feather Icons 的 `chevron-right`（MIT 许可）改造而来。
+
+| 文件 | 用途 |
+| --- | --- |
+| `favicon.svg` | 现代浏览器首选，矢量缩放不失真 |
+| `favicon.ico` | 16/32/48 多尺寸（内置 PNG） |
+| `favicon-16x16.png`、`favicon-32x32.png` | 标签页 / 书签栏 |
+| `apple-touch-icon.png` | iOS/iPadOS 添加到主屏（直角满图，由系统自己裁圆角） |
+| `android-chrome-192x192.png`、`android-chrome-512x512.png`、`mstile-150x150.png`、`site.webmanifest` | Android / Windows 磁贴 |
+| `safari-pinned-tab.svg` | Safari 固定标签页（单色，颜色由 `params.favicon.mask` 决定） |
+
+想换颜色就改 `static/favicon.svg` 里的 `fill="#1b1c1d"` / `stroke="#fe5186"`，其余 PNG/ICO 需要重新
+栅格化（用无头 Chrome 按各尺寸导出即可，需要的话我可以帮你重新跑一遍）。
+
 ## 主题来源
 
 主题 `hello-friend-ng` 由 [Djordje Atlialp](https://github.com/rhazdon) 开发，基于 MIT License 发布，

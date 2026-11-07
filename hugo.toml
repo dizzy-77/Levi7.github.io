@@ -75,6 +75,9 @@ disableHugoGeneratorInject = false
   keywords    = ""
   images      = [""]
 
+  # Colour of the browser UI (mobile address bar / tab strip).
+  themeColor  = "#1b1c1d"
+
   # Big heading on the home page (falls back to `title` when empty).
   homeTitle = "Hi Stranger"
 
@@ -129,11 +132,10 @@ disableHugoGeneratorInject = false
       "Theme <a href=\"https://github.com/rhazdon/hugo-theme-hello-friend-ng\">Hello Friend NG</a> by Djordje Atlialp"
     ]
 
-  [params.favicon.color]
-    mask          = "#1b1c1d"
+  # Colours used by the favicon <head> tags (see layouts/partials/favicons.html).
+  [params.favicon]
+    mask          = "#fe5186"
     msapplication = "#1b1c1d"
-    theme         = "#1b1c1d"
-
   [params.logo]
     logoMark     = ">"
     logoText     = "$ cd /home/levi7"
