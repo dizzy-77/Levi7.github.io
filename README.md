@@ -63,8 +63,8 @@ hugo server -D
 
 - 想默认改成浅色：把 `layouts/partials/extra-head.html` 里的 `"dark"` 改成 `"light"`。
 - 想恢复跟随系统：删掉 `layouts/partials/extra-head.html` 即可。
-- 想让访客自己切换：`hugo.toml` 里 `enableThemeToggle = true`（已开启），页头右侧会出现切换按钮，
-  选择结果记在浏览器 localStorage 里。
+- 想让访客自己切换：`hugo.toml` 里把 `enableThemeToggle` 设为 `true`（当前为 `false`，页头右侧没有切换按钮），
+  按钮出现后选择结果会记在浏览器 localStorage 里。
 
 ## 首页副标题打字机效果
 

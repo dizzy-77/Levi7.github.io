@@ -97,8 +97,8 @@ disableHugoGeneratorInject = false
   # Set disableReadOtherPosts to true in order to hide the links to other posts.
   disableReadOtherPosts = false
 
-  # Enable theme toggle (light/dark). Off by default: the theme follows the OS.
-  enableThemeToggle = true
+  # Theme toggle (light/dark switcher in the header). Disabled: the site is locked to the dark palette.
+  enableThemeToggle = false
 
   # Sharing buttons
   enableSharingButtons = true
