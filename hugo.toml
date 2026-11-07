@@ -18,7 +18,7 @@ theme = "hello-friend-ng"
 PygmentsCodeFences = true
 PygmentsStyle      = "monokai"
 
-copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # Only used by the RSS template.
+copyright = "© 2026 Levi7" # Only used by the RSS template.
 
 archetypeDir = "archetypes"
 contentDir   = "content"
@@ -121,16 +121,14 @@ disableHugoGeneratorInject = false
     name = "Levi7"
 
   [params.footer]
+    # Footer contents: © 2026 · Levi7 · RSS (set a flag to false to hide it).
     trademark = 2026
     rss       = true
-    copyright = true
     author    = true
+    copyright = false
 
-    topText = []
-    bottomText = [
-      "Powered by <a href=\"https://gohugo.io\">Hugo</a>",
-      "Theme <a href=\"https://github.com/rhazdon/hugo-theme-hello-friend-ng\">Hello Friend NG</a> by Djordje Atlialp"
-    ]
+    topText    = []
+    bottomText = []
 
   # Colours used by the favicon <head> tags (see layouts/partials/favicons.html).
   [params.favicon]
@@ -166,7 +164,6 @@ disableHugoGeneratorInject = false
 [languages]
   [languages.en]
     weight    = 1
-    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   [languages.en.params]
     subtitle = "Levi7's Blog"
 

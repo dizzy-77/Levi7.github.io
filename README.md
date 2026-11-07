@@ -123,6 +123,22 @@ hugo server -D
 想换颜色就改 `static/favicon.svg` 里的 `fill="#1b1c1d"` / `stroke="#fe5186"`，其余 PNG/ICO 需要重新
 栅格化（用无头 Chrome 按各尺寸导出即可，需要的话我可以帮你重新跑一遍）。
 
+## 页脚与署名（哪些能删）
+
+页脚显示什么完全由 `hugo.toml` 里 `[params.footer]` 的开关决定，**没有任何一项是模板强制要求的**：
+
+| 字段 | 作用 | 当前值 |
+| --- | --- | --- |
+| `trademark` | `© 年份`，填数字即显示，删掉则不显示 | `2026` |
+| `author` | 作者名链接，取 `params.author.name` | `true`（显示 Levi7） |
+| `rss` | RSS 图标（那个像 wifi 的图标） | `true` |
+| `copyright` | 版权声明，取站点 `copyright` / `[languages.xx] copyright` | `false`（已关） |
+| `topText` / `bottomText` | 页脚上下两行自定义 HTML | 均为空（已清空） |
+
+RSS 订阅源里的 `<copyright>` 取站点顶层 `copyright`（现在是 `© 2026 Levi7`），与页脚显示无关。
+
+**关于主题署名是不是必须保留**：主题 `hello-friend-ng` 是 MIT 许可。MIT 的要求是「分发时保留版权声明和许可文本」，也就是仓库里的 `themes/hello-friend-ng/LICENSE.md` 必须留着（它已经在仓库里），**并不要求**在页面上显示 "Powered by Hugo / Theme ..."。所以把页脚那行删掉完全没问题。
+
 ## 主题来源
 
 主题 `hello-friend-ng` 由 [Djordje Atlialp](https://github.com/rhazdon) 开发，基于 MIT License 发布，
