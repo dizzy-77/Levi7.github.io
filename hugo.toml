@@ -106,8 +106,9 @@ disableHugoGeneratorInject = false
   # Reading time on post info
   enableReadingTime = true
 
-  # Global language menu
-  enableGlobalLanguageMenu = true
+  # Global language menu (the "en" switcher in the header). Only useful when the
+  # site has more than one [languages.xx] block.
+  enableGlobalLanguageMenu = false
 
   # Add extra javascript / stylesheets here, e.g. "css/styles.css" or an http url.
   customCSS = []
@@ -172,13 +173,6 @@ disableHugoGeneratorInject = false
     identifier  = "about"
     name        = "About"
     url         = "about/"
-    hasChildren = true
-
-  [[menu.main]]
-    identifier = "me"
-    name       = "About Me"
-    url        = "about/me/"
-    parent     = "about"
 
   [[menu.main]]
     identifier = "posts"

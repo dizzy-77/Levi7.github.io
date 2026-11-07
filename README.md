@@ -9,8 +9,8 @@
 | `hugo.toml` | 站点配置：标题、作者、菜单、社交链接、`baseURL`、页脚等 |
 | `content/` | 文章与页面（Markdown） |
 | `content/posts/` | 博客文章 |
-| `content/about.md`、`content/about/me.md` | About / About Me 页面 |
-| `archetypes/default.md` | `hugo new` 新建文章时套用的模板 |
+| `content/about.md`、`content/about/me.md` | About / About Me 页面（About Me 不在导航里，从 About 页进入） |
+| `archetypes/default.md`、`archetypes/posts.md` | `hugo new` 新建文件时套用的模板（`content/posts/` 下用 `posts.md`，自带 `author: Levi7`） |
 | `layouts/partials/extra-head.html` | 站点级覆写：把默认配色固定为暗色（见下方「配色」） |
 | `layouts/index.html` | 站点级覆写：首页大标题取 `homeTitle`（回退到站点 `title`） |
 | `layouts/partials/subtitle.html` | 站点级覆写：首页副标题的打字机动画（见下方「打字机效果」） |
@@ -101,8 +101,11 @@ hugo server -D
 
 - `hugo.toml`：`baseURL`、`title`、`homeSubtitle`、`params.author.name`、`[[params.social]]`、
   `params.logo.logoText`、`params.footer.*`。
-- `content/about.md`、`content/about/me.md`：个人介绍。
-- `content/posts/` 下的 4 篇文章是 Hugo 官方示例内容，可保留当样板，也可直接删除。
+- `content/about.md`、`content/about/me.md`：个人介绍（About Me 页面仍在，只是不再放在导航里，可从 About 页进入）。
+- `content/posts/hello-world.md`：Hugo 官方自带的 4 篇示例文章已删除，这里留了一篇空文章当样板；
+  写新文章时直接复制它的 front matter 即可。
+- `[menu]`：页头导航只有 About 和 Posts。About 早先是悬停下拉菜单（所以点它没反应），现已改成直接跳 `/about/` 的普通链接。
+- `[params] enableGlobalLanguageMenu`：语言切换菜单（页头右侧的 `en`）已关闭，站点只有一种语言时用不到。
 - 绑定自定义域名：把域名写进 `static/CNAME`，并把 `baseURL` 改为该域名。
 - 评论区：`hugo.toml` 里已预留 `[params.utterances]` 配置（基于 GitHub Issues），需要时取消注释并填上 `repository`。
 
