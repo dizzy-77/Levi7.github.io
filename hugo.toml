@@ -111,7 +111,7 @@ disableHugoGeneratorInject = false
   enableGlobalLanguageMenu = false
 
   # Add extra javascript / stylesheets here, e.g. "css/styles.css" or an http url.
-  customCSS = []
+  customCSS = ["/css/levi7.css"]
   customJS  = []
 
   # Integrate Plausible.io
@@ -140,11 +140,12 @@ disableHugoGeneratorInject = false
     logoText     = "$ cd /home/levi7"
     logoHomeLink = "/"
 
-  # Addon: Startpage portrait
-  # [params.portrait]
-  #   path     = "/img/portrait.jpg"
-  #   alt      = "Portrait"
-  #   maxWidth = "150px"
+  # Avatar shown above the home page title. Swap the file in static/img/ for a
+  # photo (e.g. path = "/img/avatar.jpg") or remove the block to hide it.
+  [params.portrait]
+    path     = "/img/avatar.svg"
+    alt      = "Levi7"
+    maxWidth = "120px"
 
   # Addon: Utteranc.es comments (GitHub issues backed)
   # [params.utterances]
@@ -153,10 +154,24 @@ disableHugoGeneratorInject = false
   #   issueTerm  = "pathname"
   #   theme      = "preferred-color-scheme"
 
-  # Addon: Social icons
+  # Social icons under the home page title. `name` must be one of the icons
+  # listed in themes/hello-friend-ng/docs/svgs.md (github, email, X, bluesky,
+  # linkedin, telegram, stackoverflow, ...).
   [[params.social]]
     name = "github"
     url  = "https://github.com/dizzy-77"
+
+  # [[params.social]]
+  #   name = "email"
+  #   url  = "mailto:you@example.com"
+
+  # [[params.social]]
+  #   name = "X"
+  #   url  = "https://x.com/your-handle"
+
+  # [[params.social]]
+  #   name = "linkedin"
+  #   url  = "https://www.linkedin.com/in/your-handle/"
 
   [[params.social]]
     name = "rss"

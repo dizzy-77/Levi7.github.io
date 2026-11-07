@@ -12,7 +12,9 @@
 | `content/about.md`、`content/about/me.md` | About / About Me 页面（About Me 不在导航里，从 About 页进入） |
 | `archetypes/default.md`、`archetypes/posts.md` | `hugo new` 新建文件时套用的模板（`content/posts/` 下用 `posts.md`，自带 `author: Levi7`） |
 | `layouts/partials/extra-head.html` | 站点级覆写：把默认配色固定为暗色（见下方「配色」） |
-| `layouts/index.html` | 站点级覆写：首页大标题取 `homeTitle`（回退到站点 `title`） |
+| `layouts/index.html` | 站点级覆写：首页大标题取 `homeTitle`（回退到站点 `title`），下面渲染卡片式的最新文章列表 |
+| `static/css/levi7.css` | 站点级样式：首页卡片、社交图标行、头像修饰（通过 `hugo.toml` 的 `customCSS` 挂载） |
+| `static/img/avatar.svg` | 首页头像（`[params.portrait]`），换成照片直接替换此文件或改 `path` |
 | `layouts/partials/subtitle.html` | 站点级覆写：首页副标题的打字机动画（见下方「打字机效果」） |
 | `themes/hello-friend-ng/` | 主题源码（MIT License），原样保留，可自行修改或整体替换 |
 | `.github/workflows/deploy.yml` | push 到 `main` 后自动构建并发布到 GitHub Pages |
@@ -102,6 +104,9 @@ hugo server -D
 - `hugo.toml`：`baseURL`、`title`、`homeSubtitle`、`params.author.name`、`[[params.social]]`、
   `params.logo.logoText`、`params.footer.*`。
 - `content/about.md`、`content/about/me.md`：个人介绍（About Me 页面仍在，只是不再放在导航里，可从 About 页进入）。
+- 首页头像：`hugo.toml` 里 `[params.portrait]`（`path` / `alt` / `maxWidth`），删掉整块即不显示。
+- 首页卡片样式：`static/css/levi7.css`，`.home-cards` 的 `max-width`、`gap` 可调。
+- 社交图标：`hugo.toml` 的 `[[params.social]]`，`name` 取值见 `themes/hello-friend-ng/docs/svgs.md`。
 - `content/posts/hello-world.md`：Hugo 官方自带的 4 篇示例文章已删除，这里留了一篇空文章当样板；
   写新文章时直接复制它的 front matter 即可。
 - `[menu]`：页头导航只有 About 和 Posts。About 早先是悬停下拉菜单（所以点它没反应），现已改成直接跳 `/about/` 的普通链接。

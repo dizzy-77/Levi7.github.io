@@ -3,9 +3,12 @@
 
   Differences to themes/hello-friend-ng/layouts/index.html:
     1. the big <h1> uses the `homeTitle` param from hugo.toml;
-    2. the latest posts are listed below the hero, so articles are reachable
-       straight from the landing page (count: `homePostsCount`).
+    2. an optional avatar from [params.portrait];
+    3. the latest posts are rendered as cards (title, date, reading time,
+       summary, tags) instead of the plain year-grouped list
+       (count: `homePostsCount`).
 
+  The card styling lives in static/css/levi7.css (loaded through `customCSS`).
   Remove this file to go back to the theme's welcome-only home page.
 */ -}}
 {{ define "body" }}
@@ -25,7 +28,7 @@
                 {{ partial "subtitle.html" . }}
 
                 {{- with .Site.Params.social }}
-                    <div>
+                    <div class="home-social">
                         {{ partial "social-icons.html" . }}
                     </div>
                 {{- end }}
@@ -35,31 +38,27 @@
 
     {{- $count := .Site.Params.homePostsCount | default 5 -}}
     {{- with first $count (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
-        <div class="content">
-            <main class="posts">
-                {{ range .GroupByDate "2006" }}
-                    <div class="posts-group">
-                        <div class="post-year">{{ .Key }}</div>
-
-                        <ul class="posts-list">
-                            {{ range .Pages }}
-                                <li class="post-item">
-                                    <a href="{{ .Permalink }}" class="post-item-inner">
-                                        <span class="post-title">{{ .Title }}</span>
-                                        <span class="post-day">
-                                            {{ if .Site.Params.dateformShort }}
-                                                {{ time.Format .Site.Params.dateformShort .Date }}
-                                            {{ else }}
-                                                {{ time.Format "Jan 2" .Date }}
-                                            {{ end }}
-                                        </span>
-                                    </a>
-                                </li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                {{ end }}
-            </main>
+        <div class="home-cards">
+            {{ range . }}
+                <article class="home-card">
+                    <a class="home-card__link" href="{{ .Permalink }}">
+                        <div class="home-card__meta">
+                            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format .Site.Params.dateformShort .Date }}</time>
+                            {{/* with skips a post whose word count is 0 (no content yet) */}}
+                            {{ with .ReadingTime }}<span class="sep">·</span><span>{{ . }} min read</span>{{ end }}
+                        </div>
+                        <h2 class="home-card__title">{{ .Title }}</h2>
+                        {{ with .Summary }}
+                            <p class="home-card__summary">{{ . | plainify | truncate 160 }}</p>
+                        {{ end }}
+                        {{ with .Params.tags }}
+                            <div class="home-card__tags">
+                                {{ range . }}<span class="home-card__tag">#{{ . }}</span>{{ end }}
+                            </div>
+                        {{ end }}
+                    </a>
+                </article>
+            {{ end }}
         </div>
     {{- end }}
 {{ end }}
