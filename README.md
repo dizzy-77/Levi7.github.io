@@ -110,7 +110,7 @@ hugo server -D
 - 社交图标：`hugo.toml` 的 `[[params.social]]`，`name` 取值见 `themes/hello-friend-ng/docs/svgs.md`。
 - `content/posts/hello-world.md`：Hugo 官方自带的 4 篇示例文章已删除，这里留了一篇空文章当样板；
   写新文章时直接复制它的 front matter 即可。
-- `[menu]`：页头导航只有 About 和 Posts。About 早先是悬停下拉菜单（所以点它没反应），现已改成直接跳 `/about/` 的普通链接。
+- `[menu]`：页头导航是 About / Categories / Posts（顺序按主题的 `identifier` 字母序）。About 早先是悬停下拉菜单（所以点它没反应），现已改成直接跳 `/about/` 的普通链接。
 - `[params] enableGlobalLanguageMenu`：语言切换菜单（页头右侧的 `en`）已关闭，站点只有一种语言时用不到。
 - 绑定自定义域名：把域名写进 `static/CNAME`，并把 `baseURL` 改为该域名。
 - 评论区：`hugo.toml` 里已预留 `[params.utterances]` 配置（基于 GitHub Issues），需要时取消注释并填上 `repository`。
