@@ -12,7 +12,8 @@
 | `content/about.md`、`content/about/me.md` | About / About Me 页面（About Me 不在导航里，从 About 页进入） |
 | `archetypes/default.md`、`archetypes/posts.md` | `hugo new` 新建文件时套用的模板（`content/posts/` 下用 `posts.md`，自带 `author: Levi7`） |
 | `layouts/partials/extra-head.html` | 站点级覆写：把默认配色固定为暗色（见下方「配色」） |
-| `layouts/index.html` | 站点级覆写：首页大标题取 `homeTitle`（回退到站点 `title`），下面渲染卡片式的最新文章列表 |
+| `layouts/index.html` | 站点级覆写：首页 = 头像 + 大标题 + 打字机副标题 + 分类卡片 + 最新文章 |
+| `content/categories/<key>/_index.md` | 分类页：`title` / `description` / `weight`，首页分类卡片由它生成（见下方「分类」） |
 | `static/css/levi7.css` | 站点级样式：首页卡片、社交图标行、头像修饰（通过 `hugo.toml` 的 `customCSS` 挂载） |
 | `static/img/avatar.jpg` | 首页头像（`[params.portrait]`），480×480 正方形；换图直接替换此文件或改 `path` |
 | `layouts/partials/subtitle.html` | 站点级覆写：首页副标题的打字机动画（见下方「打字机效果」） |
@@ -151,3 +152,19 @@ RSS 订阅源里的 `<copyright>` 取站点顶层 `copyright`（现在是 `© 20
 
 主题 `hello-friend-ng` 由 [Djordje Atlialp](https://github.com/rhazdon) 开发，基于 MIT License 发布，
 许可证见 `themes/hello-friend-ng/LICENSE.md`。
+
+## 分类
+
+站点用 Hugo 的 taxonomy 划分两个方向，每个方向一个目录，目录名就是 URL 里的 key：
+
+| key | 显示名 | 文件 |
+| --- | --- | --- |
+| `learning` | Tech Learning | `content/categories/learning/_index.md` |
+| `engineering` | Engineering Practice | `content/categories/engineering/_index.md` |
+
+- 给文章归类：在 front matter 里写 `categories: ["learning"]`，也可以同时写两个。
+- 首页的「CATEGORIES」卡片自动来自 `content/categories/` 下的目录：顺序由各自 `_index.md` 的 `weight` 决定，描述取 `description`，文章数自动统计（草稿不计入）。
+- 分类页地址是 `/categories/<key>/`，`/categories/` 是总览页；文章正文顶部的分类链接由主题的 `partials/categories.html` 渲染，不用改。
+- 新增方向：建一个 `content/categories/<key>/_index.md`，写好 `title`、`description`、`weight` 就行，模板和配置都不用动；某个分类暂时没有文章也会显示卡片。
+- key 用英文：中文 key 会生成 `/categories/%E6%8A%80%E6%9C%AF/` 这种百分号 URL。
+- 首页「LATEST POSTS」区块显示最新 `homePostsCount`（当前 3）篇文章。

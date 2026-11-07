@@ -33,15 +33,78 @@ img.circle {
   height: 20px;
 }
 
-/* Home page post cards (see layouts/index.html). */
-.home-cards {
-  display: grid;
-  text-align: left;
-  gap: 14px;
+/* Shared container for the blocks under the hero (categories, latest posts). */
+.home-section {
   width: 100%;
   max-width: 800px;
-  padding: 20px;
-  margin: 20px auto;
+  padding: 0 20px;
+  margin: 8px auto 0;
+  text-align: left;
+}
+
+.home-section__title {
+  margin: 30px 0 12px;
+  color: #8a8a94;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Category cards, two per row (see layouts/index.html). */
+.home-cats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-cat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: #232425;
+  border: 1px solid #4e4e57;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.home-cat:hover {
+  background: #2a2b2e;
+  border-color: #fe5186;
+  transform: translateY(-2px);
+}
+
+.home-cat__name {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.18s ease;
+}
+
+.home-cat:hover .home-cat__name {
+  color: #fe5186;
+}
+
+.home-cat__desc {
+  color: #a9a9b3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.home-cat__meta {
+  margin-top: 2px;
+  color: #8a8a94;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Post cards. */
+.home-cards {
+  display: grid;
+  gap: 14px;
 }
 
 .home-card {
@@ -91,10 +154,10 @@ img.circle {
 
 .home-card__summary {
   margin: 8px 0 0;
-  text-align: left;
   color: #a9a9b3;
   font-size: 0.94rem;
   line-height: 1.55;
+  text-align: left;
 }
 
 .home-card__tags {
@@ -113,8 +176,12 @@ img.circle {
 }
 
 @media (max-width: 684px) {
-  .home-cards {
-    padding: 16px;
+  .home-section {
+    padding: 0 16px;
+  }
+
+  .home-cats {
+    grid-template-columns: 1fr;
   }
 
   .home-card__link {
