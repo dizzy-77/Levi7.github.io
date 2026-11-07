@@ -140,10 +140,10 @@ disableHugoGeneratorInject = false
     logoText     = "$ cd /home/levi7"
     logoHomeLink = "/"
 
-  # Avatar shown above the home page title. Swap the file in static/img/ for a
-  # photo (e.g. path = "/img/avatar.jpg") or remove the block to hide it.
+  # Avatar shown above the home page title (file: static/img/avatar.jpg, square).
+  # Remove the block to hide it, or point `path` at another image.
   [params.portrait]
-    path     = "/img/avatar.svg"
+    path     = "/img/avatar.jpg"
     alt      = "Levi7"
     maxWidth = "120px"
 

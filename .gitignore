@@ -13,3 +13,6 @@ resources/_gen/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local master copy of the avatar (the published one lives in static/img/avatar.jpg)
+头像.jpg
